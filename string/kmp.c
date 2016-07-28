@@ -7,10 +7,10 @@
 /*
  * Allocates a prefix table for the given substring pattern.
  */
-static int *
-create_prefix_table(char *substring, int length)
+int *
+create_prefix_table(const char *substring, const int length)
 {
-    int i, j, k, *table = malloc(sizeof(int) * length);
+    int i, j, k, *table = (int *)malloc(sizeof(int) * length);
     memset(table, 0, sizeof(int) * length);
     i = 0, j = 1;
     k = 0;
@@ -42,7 +42,7 @@ create_prefix_table(char *substring, int length)
  * Return -1 if substring was not found.
  */
 int
-search(char *substring, char *string) {
+search(const char *substring, const char *string) {
     int i, j, index, length;
     length = strlen(substring);
     int *prefix_table = create_prefix_table(substring, length);

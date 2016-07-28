@@ -4,4 +4,4 @@
  * O(m) space complexity.
  */
 
-int search(char *, char *);
+static int search(const char *, const char *);
