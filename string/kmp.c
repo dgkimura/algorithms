@@ -42,7 +42,7 @@ create_prefix_table(const char *substring, const int length)
  * Return -1 if substring was not found.
  */
 int
-search(const char *substring, const char *string) {
+FindSubStringIndex(const char *substring, const char *string) {
     int i, j, index, length;
     length = strlen(substring);
     int *prefix_table = create_prefix_table(substring, length);

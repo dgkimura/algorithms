@@ -4,4 +4,5 @@
  * O(m) space complexity.
  */
 
-static int search(const char *, const char *);
+int FindSubStringIndex(const char *SubString,
+                       const char *BaseString);
