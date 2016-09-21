@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.4)
 project(algorithms.string)
 
 set(SOURCES
-    diflib.c
     kmp.c
 )
 
