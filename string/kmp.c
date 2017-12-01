@@ -10,26 +10,20 @@
 int *
 create_prefix_table(const char *substring, const int length)
 {
-    int i, j, k, *table = (int *)malloc(sizeof(int) * length);
+    int i, j, *table = (int *)malloc(sizeof(int) * length);
     memset(table, 0, sizeof(int) * length);
-    i = 0, j = 1;
-    k = 0;
-    while (j < length) {
-        if (substring[i] == substring[j]) {
-            k += 1;
-            table[j] = k;
-            j += 1;
-            i += 1;
-        } else {
-            if (i > 0) {
-                i = table[i-1];
-                k = table[i];
-            } else
-            {
-                j += 1;
-            }
+
+    j = 0;
+    for (i = 1; i < length; i++) {
+        while (j > 0 && substring[i] != substring[j]) {
+            j = table[j-1];
         }
+        if (substring[i] == substring[j]) {
+            j += 1;
+        }
+        table[i] = j;
     }
+
     return table;
 }
 
