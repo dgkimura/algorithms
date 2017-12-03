@@ -16,3 +16,4 @@ $ make && ./unittests/all_unittests
 
 #### Contents
 - Knuth-Morris-Pratt algorithm
+- Manacher's algorithm
