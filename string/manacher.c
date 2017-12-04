@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <string.h>
 
 #define MIN(a, b) (a) < (b) ? (a) : (b)
@@ -30,5 +31,10 @@ FindLongestSubStringPalindrome(const char *string) {
             maxCenterIndex = i;
         }
     }
-    return &string[maxCenterIndex - maxLength];
+    char* result = (char *)malloc(sizeof(char) * maxLength * 2 + 1);
+    for (int i=0; i<maxLength*2+1; i++) {
+        result[i] = string[maxCenterIndex - maxLength + i];
+    }
+    result[maxLength * 2 + 1] = '\0';
+    return result;
 }

@@ -13,6 +13,7 @@ ExternalProject_Add(
 
 set(SOURCES
     kmp_unittests.cpp
+    manacher_unittests.cpp
 )
 
 add_executable(all_unittests ${SOURCES})
