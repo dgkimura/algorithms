@@ -15,5 +15,6 @@ $ make && ./unittests/all_unittests
 ```
 
 #### Contents
+- Kadane's algorithm
 - Knuth-Morris-Pratt algorithm
 - Manacher's algorithm

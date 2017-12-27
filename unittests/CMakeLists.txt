@@ -12,6 +12,7 @@ ExternalProject_Add(
 )
 
 set(SOURCES
+    kadane_unittests.cpp
     kmp_unittests.cpp
     manacher_unittests.cpp
 )
@@ -30,4 +31,4 @@ target_link_libraries(all_unittests
 )
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/gtest-prefix/src/gtest/include)
-include_directories(${algorithms_DIR})
+include_directories(${algorithms_DIR} ${array_DIR})
