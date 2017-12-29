@@ -3,9 +3,9 @@
 int
 ComputeMaximumSubArray(const int *SubArray,
                        const int Length) {
-    int overall_max = 0, current_max = 0;
+    int i, overall_max = 0, current_max = 0;
 
-    for (int i = 0; i < Length; i++) {
+    for (i = 0; i < Length; i++) {
         current_max = MAX(SubArray[i], current_max + SubArray[i]);
         overall_max = MAX(current_max, overall_max);
     }
