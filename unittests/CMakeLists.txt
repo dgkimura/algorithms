@@ -23,11 +23,21 @@ add_dependencies(all_unittests algorithms)
 
 set_property(TARGET all_unittests PROPERTY CXX_STANDARD 11)
 
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
+if (UNIX AND NOT APPLE)
+    # XXX: GCC link order matters. Ensure that 'rt' links after 'pthread'.
+    set(PLATFORM_LIBRARIES rt)
+endif()
+
 target_link_libraries(all_unittests
     PRIVATE
         algorithms
         ${CMAKE_CURRENT_BINARY_DIR}/gtest-prefix/src/gtest-build/${CMAKE_STATIC_LIBRARY_PREFIX}gtest_main${CMAKE_STATIC_LIBRARY_SUFFIX}
         ${CMAKE_CURRENT_BINARY_DIR}/gtest-prefix/src/gtest-build/${CMAKE_STATIC_LIBRARY_PREFIX}gtest${CMAKE_STATIC_LIBRARY_SUFFIX}
+        Threads::Threads
+        ${PLATFORM_LIBRARIES}
 )
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/gtest-prefix/src/gtest/include)
