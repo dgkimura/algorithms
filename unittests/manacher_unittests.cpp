@@ -25,3 +25,19 @@ TEST(StringTest, testFindLongestPalindromeAtMiddle)
 
     ASSERT_STREQ(FindLongestSubStringPalindrome(text.c_str()), "aabacabaa");
 }
+
+
+TEST(StringTest, testAllUniqueLetters)
+{
+    std::string text = "abcdefg";
+
+    ASSERT_STREQ(FindLongestSubStringPalindrome(text.c_str()), "a");
+}
+
+
+TEST(StringTest, testSingleLetterPalindrome)
+{
+    std::string text = "aaaaa";
+
+    ASSERT_STREQ(FindLongestSubStringPalindrome(text.c_str()), "aaaaa");
+}
