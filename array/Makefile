@@ -15,6 +15,9 @@ array:
 test_array: array
 	$(CC) -g test_kadane.c array.a -o test_array $(TEST_LIBS)
 
+test: test_array
+	./test_array
+
 clean:
 	rm -f test_array *.o *.a
 
