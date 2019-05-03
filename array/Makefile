@@ -9,8 +9,8 @@ endif
 all: array test_array
 
 array:
-	$(CC) -g -c kadane.c -o $@.o ${LIBS}
-	$(AR) rcs $@.a $@.o
+	$(CC) -g -c kadane.c ${LIBS}
+	$(AR) rcs $@.a kadane.o
 
 test_array: array
 	$(CC) -g test_kadane.c array.a -o test_array $(TEST_LIBS)
