@@ -13,11 +13,14 @@ array:
 	$(CC) -g -c heap.c ${LIBS}
 	$(AR) rcs $@.a kadane.o heap.o
 
-test_array: array
-	$(CC) -g test_kadane.c array.a -o test_array $(TEST_LIBS)
+test_kadane: array
+	$(CC) -g test_kadane.c array.a -o test_kadane $(TEST_LIBS)
 
-test: test_array
-	./test_array
+test_heap: array
+	$(CC) -g test_heap.c array.a -o test_heap $(TEST_LIBS)
+
+test: test_kadane test_heap
+	./test_kadane && ./test_heap
 
 clean:
 	rm -f test_array *.o *.a
