@@ -10,7 +10,8 @@ all: array test_array
 
 array:
 	$(CC) -g -c kadane.c ${LIBS}
-	$(AR) rcs $@.a kadane.o
+	$(CC) -g -c heap.c ${LIBS}
+	$(AR) rcs $@.a kadane.o heap.o
 
 test_array: array
 	$(CC) -g test_kadane.c array.a -o test_array $(TEST_LIBS)
