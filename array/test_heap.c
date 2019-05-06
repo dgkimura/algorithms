@@ -2,8 +2,38 @@
 
 #include "heap.h"
 
-START_TEST(x)
+START_TEST(test_heap_with_single_value)
 {
+    struct heap h;
+    heap_init(&h);
+
+    heap_insert(&h, 1);
+
+    ck_assert_int_eq(1, heap_minimum(&h));
+}
+END_TEST
+
+START_TEST(test_heap_with_two_increasing_values)
+{
+    struct heap h;
+    heap_init(&h);
+
+    heap_insert(&h, 1);
+    heap_insert(&h, 2);
+
+    ck_assert_int_eq(1, heap_minimum(&h));
+}
+END_TEST
+
+START_TEST(test_heap_with_two_decreasing_values)
+{
+    struct heap h;
+    heap_init(&h);
+
+    heap_insert(&h, 2);
+    heap_insert(&h, 1);
+
+    ck_assert_int_eq(1, heap_minimum(&h));
 }
 END_TEST
 
@@ -15,7 +45,9 @@ main(void)
     SRunner *runner = srunner_create(suite);
 
     suite_add_tcase(suite, testcase);
-    tcase_add_test(testcase, x);
+    tcase_add_test(testcase, test_heap_with_single_value);
+    tcase_add_test(testcase, test_heap_with_two_increasing_values);
+    tcase_add_test(testcase, test_heap_with_two_decreasing_values);
 
     srunner_run_all(runner, CK_ENV);
 }
