@@ -6,7 +6,7 @@ ifeq ($(UNAME_S), Darwin)
 	TEST_LIBS =-lcheck
 endif
 
-all: array test_array
+all: array test
 
 array:
 	$(CC) -g -c kadane.c ${LIBS}
