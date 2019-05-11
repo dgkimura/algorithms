@@ -8,6 +8,7 @@ void
 heap_init(struct heap *h)
 {
     memset(h, 0, sizeof(struct heap));
+    h->size = -1;
 }
 
 int
@@ -22,30 +23,34 @@ heap_minimum(struct heap *h)
 int
 heap_insert(struct heap *h, int value)
 {
-    int lchild, rchild, index;
+    int parent, child, index;
 
-    index = 0;
+    index = h->size + 1;
+    h->elements[index] = value;
 
     for (;;)
     {
-        if (index >= h->size)
+        child = h->elements[index];
+        parent = h->elements[(index - 1) / 2];
+
+        if (index == 0 || parent < child)
         {
-            h->elements[index] = value;
+            /*
+             * If we have reached the root or parent is less than child then
+             * there is no more work to do.
+             */
             break;
         }
 
-        if (value < h->elements[index])
+        if (child < parent)
         {
-            SWAP(h->elements[index], value)
+            /*
+             * If child is less than parent then we need to percolate the value
+             * up.
+             */
+            SWAP(h->elements[index], h->elements[(index - 1) / 2]);
         }
-
-        lchild = h->elements[index * 2];
-        rchild = h->elements[index * 2 + 1];
-
-        /*
-         * Decide whether to traverse down the left or right child.
-         */
-        index = lchild < rchild ? index * 2 : index * 2 + 1;
+        index /= 2;
     }
 
     h->size += 1;

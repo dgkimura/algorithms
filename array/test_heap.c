@@ -64,7 +64,7 @@ main(void)
     tcase_add_test(testcase, test_heap_with_single_value);
     tcase_add_test(testcase, test_heap_with_two_increasing_values);
     tcase_add_test(testcase, test_heap_with_two_decreasing_values);
-    //tcase_add_test(testcase, test_heap_with_many_decreasing_values);
+    tcase_add_test(testcase, test_heap_with_many_decreasing_values);
 
     srunner_run_all(runner, CK_ENV);
 }
