@@ -19,11 +19,18 @@ heap_minimum(struct heap *h)
 
 /*
  * Insert a value into the heap.
+ *
+ * Return 1 on success and 0 on failure.
  */
 int
 heap_insert(struct heap *h, int value)
 {
     int parent, child, index;
+
+    if (h->size + 1 > MAX_HEAP_SIZE)
+    {
+        return 0;
+    }
 
     index = h->size + 1;
     h->elements[index] = value;
@@ -54,7 +61,7 @@ heap_insert(struct heap *h, int value)
     }
 
     h->size += 1;
-    return value;
+    return 1;
 }
 
 int
