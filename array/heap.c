@@ -67,5 +67,13 @@ heap_insert(struct heap *h, int value)
 int
 heap_delete_minimum(struct heap *h)
 {
-    return 0;
+    if (h->size <= 0)
+    {
+        return 0;
+    }
+
+    h->elements[0] = h->elements[h->size];
+    h->size -= 1;
+
+    return 1;
 }

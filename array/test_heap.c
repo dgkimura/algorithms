@@ -78,6 +78,29 @@ START_TEST(test_heap_insert_succeeds)
 }
 END_TEST
 
+START_TEST(test_heap_delete_minimum_from_empty_tree)
+{
+    struct heap h;
+    heap_init(&h);
+
+    ck_assert_int_eq(0, heap_delete_minimum(&h));
+}
+END_TEST
+
+START_TEST(test_heap_decending_insert_then_delete_minimum)
+{
+    struct heap h;
+    heap_init(&h);
+
+    heap_insert(&h, 2);
+    heap_insert(&h, 1);
+
+    ck_assert_int_eq(1, heap_minimum(&h));
+    ck_assert_int_eq(1, heap_delete_minimum(&h));
+    ck_assert_int_eq(2, heap_minimum(&h));
+}
+END_TEST
+
 int
 main(void)
 {
@@ -92,6 +115,8 @@ main(void)
     tcase_add_test(testcase, test_heap_with_many_decreasing_values);
     tcase_add_test(testcase, test_heap_with_many_increasing_values);
     tcase_add_test(testcase, test_heap_insert_succeeds);
+    tcase_add_test(testcase, test_heap_delete_minimum_from_empty_tree);
+    tcase_add_test(testcase, test_heap_decending_insert_then_delete_minimum);
 
     srunner_run_all(runner, CK_ENV);
 }
