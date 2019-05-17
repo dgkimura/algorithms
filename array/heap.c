@@ -4,6 +4,9 @@
 
 #define SWAP(x, y) x ^= y; y ^= x; x ^= y;
 
+#define LCHILD_INDEX(i) ((i) + 1) * 2 - 1
+#define RCHILD_INDEX(i) ((i) + 1) * 2
+
 void
 heap_init(struct heap *h)
 {
@@ -67,6 +70,8 @@ heap_insert(struct heap *h, int value)
 int
 heap_delete_minimum(struct heap *h)
 {
+    int lchild, rchild, index;
+
     if (h->size <= 0)
     {
         return 0;
@@ -74,6 +79,41 @@ heap_delete_minimum(struct heap *h)
 
     h->elements[0] = h->elements[h->size];
     h->size -= 1;
+
+    for (index=0; index < h->size;)
+    {
+        if (h->size >= LCHILD_INDEX(index))
+        {
+            lchild = h->elements[LCHILD_INDEX(index)];
+            if (lchild < h->elements[(index)])
+            {
+                SWAP(h->elements[(index)], h->elements[LCHILD_INDEX(index)]);
+                index = LCHILD_INDEX(index);
+            }
+            else
+            {
+                break;
+            }
+        }
+        else if (h->size >= RCHILD_INDEX(index))
+        {
+            rchild = h->elements[RCHILD_INDEX(index)];
+            if (rchild < h->elements[RCHILD_INDEX(index)])
+            {
+                SWAP(h->elements[(index)], h->elements[RCHILD_INDEX(index)]);
+                index = RCHILD_INDEX(index);
+            }
+            else
+            {
+                break;
+            }
+        }
+        else
+        {
+            break;
+        }
+
+    }
 
     return 1;
 }

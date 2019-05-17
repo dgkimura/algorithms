@@ -134,7 +134,7 @@ main(void)
     tcase_add_test(testcase, test_heap_insert_succeeds);
     tcase_add_test(testcase, test_heap_delete_minimum_from_empty_tree);
     tcase_add_test(testcase, test_heap_decending_insert_then_delete_minimum);
-    //tcase_add_test(testcase, test_heap_ascending_inserts_then_delete_minimum);
+    tcase_add_test(testcase, test_heap_ascending_inserts_then_delete_minimum);
 
     srunner_run_all(runner, CK_ENV);
 }
