@@ -67,6 +67,11 @@ heap_insert(struct heap *h, int value)
     return 1;
 }
 
+/*
+ * Delete minimum value in the heap.
+ *
+ * Return 1 on success and 0 on failure.
+ */
 int
 heap_delete_minimum(struct heap *h)
 {
@@ -77,6 +82,10 @@ heap_delete_minimum(struct heap *h)
         return 0;
     }
 
+    /*
+     * Move the greatest element into the root node which we will then
+     * percolate down as far as we can.
+     */
     h->elements[0] = h->elements[h->size];
     h->size -= 1;
 
@@ -87,6 +96,10 @@ heap_delete_minimum(struct heap *h)
             lchild = h->elements[LCHILD_INDEX(index)];
             if (lchild < h->elements[(index)])
             {
+                /*
+                 * If left child is less than current element then we need to
+                 * percolate the value down.
+                 */
                 SWAP(h->elements[(index)], h->elements[LCHILD_INDEX(index)]);
                 index = LCHILD_INDEX(index);
             }
@@ -100,6 +113,10 @@ heap_delete_minimum(struct heap *h)
             rchild = h->elements[RCHILD_INDEX(index)];
             if (rchild < h->elements[RCHILD_INDEX(index)])
             {
+                /*
+                 * If right child is less than current element then we need to
+                 * percolate the value down.
+                 */
                 SWAP(h->elements[(index)], h->elements[RCHILD_INDEX(index)]);
                 index = RCHILD_INDEX(index);
             }
@@ -110,6 +127,9 @@ heap_delete_minimum(struct heap *h)
         }
         else
         {
+            /*
+             * If there is no left child or right child then we're done.
+             */
             break;
         }
 
